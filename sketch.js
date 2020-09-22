@@ -1,5 +1,6 @@
 var movingrect,fixedrect
-
+ 
+var ball1,ball2,ball3,ball4
 
 function setup() {
   createCanvas(800,400);
@@ -11,32 +12,36 @@ function setup() {
  fixedrect.shapeColor="red"
  fixedrect.velocityX=2
  fixedrect.velocityY=-2
+
+ ball1=createSprite(30,30,20,20)
+ ball1.shapeColor=("yellow")
+ ball2=createSprite(60,30,20,20)
+ ball2.shapeColor=("yellow")
+ ball3=createSprite(90,30,20,20)
+ ball3.shapeColor=("yellow")
+ ball3.velocityX=2
+ ball3.velocityY=-2
+ ball4=createSprite(120,30,20,20)
+ ball4.shapeColor=("yellow")
+ 
+ 
 }
 
 function draw() {
   background(1); 
   movingrect.y=mouseY
   movingrect.x=mouseX 
-  if(movingrect.x-fixedrect.x<movingrect.width/2+fixedrect.width/2&&
-    fixedrect.x-movingrect.x<movingrect.width/2+fixedrect.width/2&&
-    fixedrect.y-movingrect.y<movingrect.height/2+fixedrect.height/2&&
-    movingrect.y-fixedrect.y<movingrect.height/2+fixedrect.height/2){
-    movingrect.shapeColor="blue"
-    fixedrect.shapeColor="green"
-  }
-  else{
-    movingrect.shapeColor="red"
-    fixedrect.shapeColor="red"
-  }
-  if(movingrect.x-fixedrect.x<movingrect.width/2+fixedrect.width/2&&
-    fixedrect.x-movingrect.x<movingrect.width/2+fixedrect.width/2){
-      movingrect.velocityX=movingrect.velocityX*(-1)
-      fixedrect.velocityX=fixedrect.velocityX*(-1)
+  
+
+     if( istouching(movingrect,ball1)){
+     movingrect.shapeColor=("blue")
+     ball1.shapeColor=("green")
+     }
+     else{
+      movingrect.shapeColor="red"
+      ball1.shapeColor="yellow"
     }
-    if(fixedrect.y-movingrect.y<movingrect.height/2+fixedrect.height/2&&
-      movingrect.y-fixedrect.y<movingrect.height/2+fixedrect.height/2){
-        movingrect.velocityY=movingrect.velocityY*(-1)
-      fixedrect.velocityY=fixedrect.velocityY*(-1)
-      }
+    bounceoff(movingrect,ball3)
+
   drawSprites();
 }
